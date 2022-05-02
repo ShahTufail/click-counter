@@ -8,36 +8,40 @@ configure({adapter: new EnzymeAdapter() })
 let wrapper;
 describe('testing click counter app', () => {
 
+const findByAttr = (val) => {
+  return wrapper.find(`[data-test="${val}"]`);
+}
   beforeEach(() => {
-    wrapper = shallow(<App />)
+    wrapper = shallow(<App />);
   })
-  test('renders without crashing', () => {
-    // const wrapper = shallow(<App />)
-    const component = wrapper.find(`[data-test="counter-component"]`);
+  test('renders without app crashing', () => {
+    // const wrcvvapper = shallow(<App />) // Moved to beforeEach
+    // const comsdfponent = wrapper.find(`[data-test="counter-component"]`); created findByAttr function
+    const component = findByAttr('counter-component');
     expect(component.length).toBe(1)
-    // console.log(wrapper.debug())
   });
 
   test('Increment button renders', () => {
-    const button = wrapper.find('[data-test="increment-button"]')
+    const button = findByAttr('increment-button')
     expect(button.length).toBe(1);
   })
 
   test('render count display', () => {
-    const counter = wrapper.find('[data-test="display-counter"]')
+    const counter = findByAttr('display-counter')
     expect(counter.length).toBe(1);
   })
 
   test('render count starts at zero', () => {
-    const count = wrapper.find('[data-test="count"]')
-    expect(count.text()).toBe('0')
+    const count = findByAttr('count').text()
+    expect(count).toBe('0')
   })
 
   test('counter increments when button is clicked', () => {
-    const  button = wrapper.find('[data-test="increment-button"]')
+    const button = findByAttr('increment-button')
     button.simulate('click')
-    // check the counter
-    const count = wrapper.find('[data-test="count"]').text();
+
+    // check the counter after click
+    const count = findByAttr('count').text()
     expect(count).toBe("1");
   })
 })
