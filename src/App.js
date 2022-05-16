@@ -5,7 +5,7 @@ function App() {
   const [count, setCount] = useState(0)
   return (
     <div className="App" data-test='counter-component'>
-      <h1 data-test="display-counter">The count is:
+      <h1 data-test="display-counter">The count value is:
         <span data-test="count">{count}</span>
       </h1>
       <button
