@@ -16,7 +16,7 @@ const findByAttr = (val) => {
   })
   test('renders without app crashing', () => {
     // const wrcvvapper = shallow(<App />) // Moved to beforeEach
-    // const comsdfponent = wrapper.find(`[data-test="counter-component"]`); created findByAttr function
+    // const component = wrapper.find(`[data-test="counter-component"]`);  created findByAttr function
     const component = findByAttr('counter-component');
     expect(component.length).toBe(1)
   });
